@@ -1,21 +1,17 @@
 import Image from "next/image";
+import fs from 'fs';
+import matter from 'gray-matter';
 
 export default function Home() {
-  const blogPosts = [
-    {
-      title: "Understanding React",
-      description: "A deep dive into React and its ecosystem.",
-      image: "/react.svg",
-      link: "/blog/understanding-react",
-    },
-    {
-      title: "Next.js for Beginners",
-      description: "Learn the basics of Next.js and how to get started.",
-      image: "/next.svg",
-      link: "/blog/nextjs-for-beginners",
-    },
-    // Add more blog posts here
-  ];
+  const files = fs.readdirSync('app/markdowns');
+  const blogPosts = files.map((file) => {
+    let fl = fs.readFileSync(`app/markdowns/${file}`, 'utf8');
+    let { data } = matter(fl);
+    return {
+      title: data.title,
+      link: `/blogs/${file.replace('.md', '')}`,
+    };
+  });
 
   return (
     <div className="min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -28,14 +24,13 @@ export default function Home() {
           <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden">
             <Image
               className="w-full h-48 object-cover"
-              src={post.image}
+              src={post.image || '/default-image.svg'}
               alt={post.title}
               width={400}
               height={200}
             />
             <div className="p-6">
               <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-gray-700 mb-4">{post.description}</p>
               <a
                 href={post.link}
                 className="text-blue-500 hover:underline"
