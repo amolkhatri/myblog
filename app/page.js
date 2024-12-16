@@ -7,9 +7,10 @@ export default function Home() {
   const blogPosts = files.map((file) => {
     let fl = fs.readFileSync(`app/markdowns/${file}`, 'utf8');
     let { data } = matter(fl);
+
     return {
       title: data.title,
-      link: `/blogs/${file.replace('.md', '')}`,
+      link: `/myblog/blogs/${file.replace('.md', '')}`,
     };
   });
 
