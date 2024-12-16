@@ -2,15 +2,14 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import Markdown from 'react-markdown';
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
     const files = fs.readdirSync('app/markdowns');
     const paths = files.map((file) => ({
         params: { name: file.replace('.md', '') },
     }));
-    return {
-        paths,
-        fallback: false,
-    };
+    return paths.map((path) => ({
+        name: path.params.name,
+    }));
 }
 
 export default async function BlogPage({params}) {
