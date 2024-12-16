@@ -17,9 +17,9 @@ export default async function BlogPage({params}) {
     const file = fs.readFileSync(`app/markdowns/${name}.md`, 'utf8');
     const {content, data} = matter(file);
     return (
-        <div>
+        <div className="bg-white">
             <h1>{data.title}</h1>
-            <Markdown >{content}</Markdown>
+            <Markdown  className="markdown p-8 text-black">{content}</Markdown>
         </div>
     )
 }

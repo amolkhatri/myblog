@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.markdown > * {
+  all: revert;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,5 +21,63 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4c1d95; /* Purple color for headings */
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+code {
+  background-color: #f3f4f6; /* Light gray background for code */
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+pre {
+  background-color: #f3f4f6;
+  padding: 1em;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+a {
+  color: #6366f1; /* Indigo color for links */
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #4f46e5; /* Darker indigo on hover */
+}
+
+ul, ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+li {
+  margin-bottom: 0.5em;
 }
